@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "invid-ui catalog",
+    "slug": "invid-ui-catalog",
+    "version": "1.0.0",
+    "orientation": "default",
+    "scheme": "invid-ui-catalog",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"]
+  }
+}
