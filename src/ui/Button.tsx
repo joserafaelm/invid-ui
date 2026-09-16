@@ -6,6 +6,7 @@ export type ButtonVariant = "default" | "lead" | "muted";
 
 type NativePressableProps = ComponentProps<typeof Pressable>;
 
+// Omit className, style, and children from the native Pressable props to avoid conflicts with our custom Button component.
 export type ButtonProps = Omit<
   NativePressableProps,
   "className" | "style" | "children"
