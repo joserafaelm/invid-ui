@@ -1,6 +1,6 @@
 {
   "root": true,
-  "$schema": "https://biomejs.dev/schemas/2.5.12/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
   "html": { "experimentalFullSupportEnabled": true },
   "css": {
     "parser": {
@@ -16,7 +16,14 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**/*.ts", "**/*.css", "**/*.json", "**/*.tsx"]
+    "includes": [
+      "**/*.ts",
+      "**/*.css",
+      "**/*.json",
+      "**/*.tsx",
+      "!**/.rnstorybook/storybook.requires.ts",
+      "!**/uniwind-types.d.ts"
+    ]
   },
   "assist": {
     "actions": {
@@ -126,6 +133,6 @@
         }
       }
     },
-    "includes": ["**", "!.expo/**", "!dist/**"]
+    "includes": ["**", "!**/.expo", "!**/dist"]
   }
 }

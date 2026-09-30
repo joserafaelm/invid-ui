@@ -4,11 +4,11 @@ Issues and specs for this repo live as GitHub issues on `joserafaelm/invid-ui`. 
 
 ## Identity (required)
 
-This repo must only be accessed with the Invid GitHub identity:
+This repo must only be accessed with the INVID GitHub identity:
 
 - Git remote: `git@github-invid:joserafaelm/invid-ui.git` (SSH alias `github-invid` → key `~/.ssh/id_ed25519_invid`). Never rewrite it to `git@github.com:`.
 - Commit identity: `user.name "JRMR"`, `user.email "jmorales@invidgroup.com"` (repo-local git config). Verify before committing.
-- `gh` authenticates by token, not the SSH key. Before the first `gh` write in a session, run `gh auth status` and confirm the active github.com account is the one with access to `joserafaelm/invid-ui` via the Invid identity; if not, `gh auth switch` to it or stop and ask.
+- `gh` authenticates by token, not the SSH key. Before the first `gh` write in a session, run `gh auth status` and confirm the active github.com account is the one with access to `joserafaelm/invid-ui` via the INVID identity; if not, `gh auth switch` to it or stop and ask.
 - Always pass `--repo joserafaelm/invid-ui` to `gh` commands so the SSH alias never has to be resolved.
 
 ## Conventions

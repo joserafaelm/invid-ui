@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "INVID UI storybook",
+    "slug": "invid-ui-storybook",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["@react-native-community/datetimepicker"]
+  }
+}
