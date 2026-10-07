@@ -8,7 +8,7 @@ const DEMO_SCREENS = [
   { name: "index", title: "Overview" },
   { name: "p", title: "P" },
   { name: "Button", title: "Button" },
-  { name: "TextInput", title: "Text Input" },
+  { name: "text-input", title: "Text Input" },
   { name: "NumberInput", title: "Number Input" },
   { name: "Form", title: "Form" },
   { name: "Title", title: "Title" },

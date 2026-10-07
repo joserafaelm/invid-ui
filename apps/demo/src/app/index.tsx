@@ -21,7 +21,7 @@ import { View } from "react-native";
 
 const P_ROUTE = "/p";
 const BUTTON_ROUTE = "/Button";
-const TEXT_INPUT_ROUTE = "/text-Input";
+const TEXT_INPUT_ROUTE = "/text-input";
 const NUMBER_INPUT_ROUTE = "/NumberInput";
 const FORM_ROUTE = "/Form";
 const TITLE_ROUTE = "/Title";
