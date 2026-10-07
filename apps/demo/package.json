@@ -10,8 +10,11 @@
     "start": "expo start",
     "typecheck": "tsc --noEmit"
   },
+  
   "dependencies": {
     "@invid/ui": "workspace:*",
+    "@tabler/icons-react-native": "^3.48.0",
+    "@tanstack/react-form": "^1.33.5",
     "expo": "catalog:",
     "expo-constants": "~57.0.20",
     "expo-linking": "~57.0.11",
