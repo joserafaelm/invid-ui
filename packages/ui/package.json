@@ -48,8 +48,8 @@
       "default": "./dist/ui/Title.js"
     },
     "./icons": {
-      "types": "./dist/ui/Icons.d.ts",
-      "default": "./dist/ui/Icons.js"
+      "types": "./dist/ui/icon.d.ts",
+      "default": "./dist/ui/icon.js"
     },
     "./package.json": "./package.json"
   },

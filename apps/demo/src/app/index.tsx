@@ -39,49 +39,49 @@ export default function OverviewRoute() {
 
         <Link asChild={true} href={P_ROUTE}>
           <Button
-            icon={<Icon icon={IconTypography} size="sm" />}
+            icon={<Icon icon={IconTypography} size={16} />}
             title="P"
           />
         </Link>
         <Link asChild={true} href={BUTTON_ROUTE}>
           <Button
-            icon={<Icon icon={IconHandClick} size="sm" />}
+            icon={<Icon icon={IconHandClick} size={16} />}
             title="Button"
           />
         </Link>
         <Link asChild={true} href={TEXT_INPUT_ROUTE}>
           <Button
-            icon={<Icon icon={IconForms} size="sm" />}
+            icon={<Icon icon={IconForms} size={16} />}
             title="Text Input"
           />
         </Link>
         <Link asChild={true} href={NUMBER_INPUT_ROUTE}>
           <Button
-            icon={<Icon icon={IconNumbers} size="sm" />}
+            icon={<Icon icon={IconNumbers} size={16} />}
             title="Number Input"
           />
         </Link>
         <Link asChild={true} href={FORM_ROUTE}>
           <Button
-            icon={<Icon icon={IconForms} size="sm" />}
+            icon={<Icon icon={IconForms} size={16} />}
             title="Form"
           />
         </Link>
         
         <Link asChild={true} href={TITLE_ROUTE}>
           <Button
-            icon={<Icon icon={IconTextSize} size="sm" />}
+            icon={<Icon icon={IconTextSize} size={16} />}
             title="Title"
           />
         </Link>
         <Link asChild={true} href={ICONS_ROUTE}>
           <Button 
-          icon={<Icon icon={IconIcons} size="sm" />} 
+          icon={<Icon icon={IconIcons} size={16} />}
           title="Icons" />
         </Link>
         <Link asChild={true} href={CONTAINER_ROUTE}>
           <Button
-            icon={<Icon icon={IconBox} size="sm" />}
+            icon={<Icon icon={IconBox} size={16} />}
             title="Container"
           />
         </Link>
