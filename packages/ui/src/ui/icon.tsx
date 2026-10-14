@@ -37,5 +37,7 @@ export function Icon({
   const variantColor = useThemeColor(ICON_VARIANT_COLORS[variant]);
   const iconProps = { ...props, color: color ?? variantColor };
 
-  return icon(iconProps);
+const IconComponent = icon;
+
+return <IconComponent {...iconProps} />;
 }
