@@ -1,3 +1,7 @@
+
+// to search for icons, go to https://lucide.dev/icons and copy the name of the icon you want to use
+// one you choose an icon, click on the "Copy Component Name" button and paste it into the ICON object below
+
 import {
   Bell,
   Box,
@@ -37,5 +41,7 @@ export const ICON = {
   user: User,
   "circle-chevron-right": CircleChevronRight 
 } as const;
+
+//to use an icon with a space in the name, use the icon name with quotes, for example: <Icon name="circle-chevron-right" />
 
 export type IconName = keyof typeof ICON;
