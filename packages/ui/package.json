@@ -22,6 +22,35 @@
       "types": "./dist/theme/use-theme-color.d.ts",
       "default": "./dist/theme/use-theme-color.js"
     },
+    "./button": {
+      "types": "./dist/ui/Button.d.ts",
+      "default": "./dist/ui/Button.js"
+    },
+    "./container": {
+      "types": "./dist/ui/container.d.ts",
+      "default": "./dist/ui/container.js"
+    },
+    "./text-input": {
+      "types": "./dist/ui/TextInput.d.ts",
+      "default": "./dist/ui/TextInput.js"
+    },
+    "./number-input": {
+      "types": "./dist/ui/NumberInput.d.ts",
+      "default": "./dist/ui/NumberInput.js"
+    },
+    "./form-fields": {
+      "types": "./dist/ui/FormFields.d.ts",
+      "default": "./dist/ui/FormFields.js"
+    },
+
+    "./title": {
+      "types": "./dist/ui/Title.d.ts",
+      "default": "./dist/ui/Title.js"
+    },
+    "./icons": {
+      "types": "./dist/ui/icon.d.ts",
+      "default": "./dist/ui/icon.js"
+    },
     "./package.json": "./package.json"
   },
   "imports": {
@@ -41,6 +70,8 @@
     "uniwind": "^1.12.0"
   },
   "peerDependencies": {
+    "lucide-react-native": "^1.57.0",
+    "@tanstack/react-form": "^1.33.5",
     "react": ">=19.1.0 <20.0.0",
     "react-native": ">=0.82.0 <0.87.0",
     "react-native-gesture-handler": "^2.28.0",

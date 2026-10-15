@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@invid/ui": "workspace:*",
+    "lucide-react-native": "^1.57.0",
     "expo": "catalog:",
     "expo-constants": "~57.0.20",
     "expo-linking": "~57.0.11",
