@@ -5,7 +5,6 @@
     "": {
       "name": "invid-ui",
       "dependencies": {
-        "@tabler/icons-react-native": "^3.48.0",
         "@tanstack/react-form": "^1.33.5",
         "zod": "^4.6.5",
       },
@@ -20,13 +19,13 @@
       "version": "1.0.0",
       "dependencies": {
         "@invid/ui": "workspace:*",
-        "@tabler/icons-react-native": "^3.48.0",
         "@tanstack/react-form": "^1.33.5",
         "expo": "catalog:",
         "expo-constants": "~57.0.20",
         "expo-linking": "~57.0.11",
         "expo-router": "~57.0.24",
         "expo-status-bar": "~57.0.1",
+        "lucide-react-native": "^1.57.0",
         "react": "catalog:",
         "react-native": "catalog:",
         "react-native-gesture-handler": "catalog:",
@@ -52,8 +51,8 @@
         "@storybook/addon-ondevice-actions": "^10.6.0",
         "@storybook/addon-ondevice-controls": "^10.6.0",
         "@storybook/react-native": "^10.6.0",
-        "@tabler/icons-react-native": "^3.48.0",
         "expo": "catalog:",
+        "lucide-react-native": "^1.57.0",
         "react": "catalog:",
         "react-dom": "catalog:",
         "react-native": "catalog:",
@@ -93,8 +92,8 @@
         "typescript": "catalog:",
       },
       "peerDependencies": {
-        "@tabler/icons-react-native": "^3.48.0",
         "@tanstack/react-form": "^1.33.5",
+        "lucide-react-native": "^1.57.0",
         "react": ">=19.1.0 <20.0.0",
         "react-native": ">=0.82.0 <0.87.0",
         "react-native-gesture-handler": "^2.28.0",
@@ -625,10 +624,6 @@
 
     "@storybook/react-native-ui-common": ["@storybook/react-native-ui-common@10.6.0", "", { "dependencies": { "@nozbe/microfuzz": "^1.0.0", "@storybook/react": "^10.6.0", "@storybook/react-native-theming": "^10.6.0", "es-toolkit": "^1.49.0", "memoizerific": "^1.11.3", "ts-dedent": "^2.3.0" }, "peerDependencies": { "react": "*", "react-native": ">=0.57.0", "storybook": "^10.5.4" } }, "sha512-baEL3UE2a9j0LD6jNCFTT+p6s4nrMHKGaEOgiYFroP/Vpk/sstqZjGgPLjQ08HDvv0J4F9GzFhecyZwlWMs8Ng=="],
 
-    "@tabler/icons": ["@tabler/icons@3.48.0", "", {}, "sha512-lQk06gVHNVBnJp0UOgtth54mcZBJM7rdYKsAxKOProj1bbSAx+/xiuOWfHlyvgdL3M+Y+I0HINrjHa3ygp8eXQ=="],
-
-    "@tabler/icons-react-native": ["@tabler/icons-react-native@3.48.0", "", { "dependencies": { "@tabler/icons": "3.48.0" }, "peerDependencies": { "react": ">= 16.5.1", "react-native-svg": ">= 13.0.0" } }, "sha512-2yY0F4hQk58EVwpq0a1m97VBghFPoXDq4VOXeqUle0KFkb/rUHz2qjy/nZz3Ef0f/MERw+/PUWzo/aPxCXd6cw=="],
-
     "@tailwindcss/node": ["@tailwindcss/node@4.3.3", "", { "dependencies": { "@jridgewell/remapping": "^2.3.5", "enhanced-resolve": "^5.24.1", "jiti": "^2.7.0", "lightningcss": "1.32.0", "magic-string": "^0.30.21", "source-map-js": "^1.2.1", "tailwindcss": "4.3.3" } }, "sha512-/T8IKEsf9VTU6tLjgC7+sv2mOPtQxzE2jMw7u4Tt40Tx+QSZxpzh95/H6cMKoja9XuW7iMdLJYBB0o9G1CaAgg=="],
 
     "@tailwindcss/oxide": ["@tailwindcss/oxide@4.3.3", "", { "optionalDependencies": { "@tailwindcss/oxide-android-arm64": "4.3.3", "@tailwindcss/oxide-darwin-arm64": "4.3.3", "@tailwindcss/oxide-darwin-x64": "4.3.3", "@tailwindcss/oxide-freebsd-x64": "4.3.3", "@tailwindcss/oxide-linux-arm-gnueabihf": "4.3.3", "@tailwindcss/oxide-linux-arm64-gnu": "4.3.3", "@tailwindcss/oxide-linux-arm64-musl": "4.3.3", "@tailwindcss/oxide-linux-x64-gnu": "4.3.3", "@tailwindcss/oxide-linux-x64-musl": "4.3.3", "@tailwindcss/oxide-wasm32-wasi": "4.3.3", "@tailwindcss/oxide-win32-arm64-msvc": "4.3.3", "@tailwindcss/oxide-win32-x64-msvc": "4.3.3" } }, "sha512-krXjAikiaFSPaK/FkAQT5UTx3VormQaiZ5hBFlJZ9UFQGB/rwg1MZIhHAG9smMQRTdyJxP6Qt5MwMtdyU5FWrA=="],
@@ -1146,6 +1141,8 @@
     "loupe": ["loupe@3.2.1", "", {}, "sha512-CdzqowRJCeLU72bHvWqwRBBlLcMEtIvGrlvef74kMnV2AolS9Y8xUv1I0U/MNAWMhBlKIoyuEgoJ0t/bbwHbLQ=="],
 
     "lru-cache": ["lru-cache@5.1.1", "", { "dependencies": { "yallist": "^3.0.2" } }, "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w=="],
+
+    "lucide-react-native": ["lucide-react-native@1.57.0", "", { "peerDependencies": { "@types/react": "*", "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-native": "*", "react-native-svg": "^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0" }, "optionalPeers": ["@types/react"] }, "sha512-IIFTqlr+g5hn65AQSeLxzndXa/m/Cw1Kcu9XbE3nPnLlm3IXeDFriS0wKaPRhbY4+Oq/6+CzsCglU13dfkAmeQ=="],
 
     "lz-string": ["lz-string@1.5.0", "", { "bin": { "lz-string": "bin/bin.js" } }, "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ=="],
 

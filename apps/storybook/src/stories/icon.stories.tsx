@@ -8,6 +8,7 @@ const ICON_NAMES = [
   "box",
   "calendar",
   "clipboardList",
+  "circle-chevron-right",
   "hash",
   "heart",
   "home",

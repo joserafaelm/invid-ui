@@ -19,14 +19,14 @@ import {
   Shapes,
   Star,
   Type,
-  User
+  User,
 } from "lucide-react-native";
 
 export const ICON = {
   bell: Bell,
   box: Box,
   calendar: CalendarDays,
-  "clipboard-List" :  ClipboardList,
+  clipboardList: ClipboardList,
   hash: Hash,
   heart: Heart,
   home: Home,
@@ -39,7 +39,7 @@ export const ICON = {
   star: Star,
   type: Type,
   user: User,
-  "circle-chevron-right": CircleChevronRight 
+  "circle-chevron-right": CircleChevronRight,
 } as const;
 
 //to use an icon with a space in the name, use the icon name with quotes, for example: <Icon name="circle-chevron-right" />
