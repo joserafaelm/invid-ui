@@ -9,18 +9,58 @@ type ThemeColorDefinition = Readonly<
 export const THEME_COLORS = {
   background: {
     engineVariable: "--background",
-    light: "#ffffff",
-    dark: "#0a0a0a",
+    light: "#F2F4F5",
+    dark: "#F2F4F5",
   },
   foreground: {
     engineVariable: "--foreground",
     light: "#171717",
-    dark: "#fafafa",
+    dark: "#171717",
   },
   "muted-foreground": {
     engineVariable: "--muted",
     light: "#646464",
-    dark: "#a3a3a3",
+    dark: "#646464",
+  },
+  "muted-background": {
+    engineVariable: "--muted-background",
+    light: "#E3F2FD",
+    dark: "#E3F2FD",
+  },
+  primary: {
+    engineVariable: "--primary",
+    light: "#00728f",
+    dark: "#00728f",
+  },
+  "primary-foreground": {
+    engineVariable: "--primary-foreground",
+    light: "#f8fbfc",
+    dark: "#f8fbfc",
+  },
+  secondary: {
+    engineVariable: "--secondary",
+    light: "#0E3052",
+    dark: "#0E3052",
+  },
+  "secondary-foreground": {
+    engineVariable: "--secondary-foreground",
+    light: "#0f172a",
+    dark: "#0f172a",
+  },
+  accent: {
+    engineVariable: "--accent",
+    light: "#00AECC",
+    dark: "#00AECC",
+  },
+  text: {
+    engineVariable: "--text",
+    light: "#00AECC",
+    dark: "#00AECC",
+  },
+  soporte: {
+    engineVariable: "--soporte",
+    light: "#0085AA",
+    dark: "#0085AA",
   },
 } as const satisfies Record<string, ThemeColorDefinition>;
 
