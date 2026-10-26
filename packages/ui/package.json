@@ -23,33 +23,68 @@
       "default": "./dist/theme/use-theme-color.js"
     },
     "./button": {
-      "types": "./dist/ui/Button.d.ts",
-      "default": "./dist/ui/Button.js"
+      "types": "./dist/ui/button.d.ts",
+      "default": "./dist/ui/button.js"
     },
     "./container": {
       "types": "./dist/ui/container.d.ts",
       "default": "./dist/ui/container.js"
     },
+    "./icon": {
+      "types": "./dist/ui/icons/icon.d.ts",
+      "default": "./dist/ui/icons/icon.js"
+    },
+    "./avatar": {
+      "types": "./dist/ui/avatar/avatar.d.ts",
+      "default": "./dist/ui/avatar/avatar.js"
+    },
+    "./badge": {
+      "types": "./dist/ui/badge.d.ts",
+      "default": "./dist/ui/badge.js"
+    },
+    "./card": {
+      "types": "./dist/ui/card/card.d.ts",
+      "default": "./dist/ui/card/card.js"
+    },
+    "./table": {
+      "types": "./dist/ui/table/table.d.ts",
+      "default": "./dist/ui/table/table.js"
+    },
+    "./table-parts": {
+      "types": "./dist/ui/table/table-parts.d.ts",
+      "default": "./dist/ui/table/table-parts.js"
+    },
+    "./table-types": {
+      "types": "./dist/ui/table/table-types.d.ts",
+      "default": "./dist/ui/table/table-types.js"
+    },
     "./text-input": {
-      "types": "./dist/ui/TextInput.d.ts",
-      "default": "./dist/ui/TextInput.js"
+      "types": "./dist/ui/text-input.d.ts",
+      "default": "./dist/ui/text-input.js"
     },
     "./number-input": {
-      "types": "./dist/ui/NumberInput.d.ts",
-      "default": "./dist/ui/NumberInput.js"
+      "types": "./dist/ui/number-input.d.ts",
+      "default": "./dist/ui/number-input.js"
+    },
+    "./date-picker": {
+      "types": "./dist/ui/date-time-picker/date-picker.d.ts",
+      "default": "./dist/ui/date-time-picker/date-picker.js"
+    },
+    "./time-picker": {
+      "types": "./dist/ui/date-time-picker/time-picker.d.ts",
+      "default": "./dist/ui/date-time-picker/time-picker.js"
     },
     "./form-fields": {
-      "types": "./dist/ui/FormFields.d.ts",
-      "default": "./dist/ui/FormFields.js"
+      "types": "./dist/ui/form-fields.d.ts",
+      "default": "./dist/ui/form-fields.js"
     },
-
+    "./picker-field": {
+      "types": "./dist/ui/picker-field.d.ts",
+      "default": "./dist/ui/picker-field.js"
+    },
     "./title": {
-      "types": "./dist/ui/Title.d.ts",
-      "default": "./dist/ui/Title.js"
-    },
-    "./icons": {
-      "types": "./dist/ui/icon.d.ts",
-      "default": "./dist/ui/icon.js"
+      "types": "./dist/ui/title.d.ts",
+      "default": "./dist/ui/title.js"
     },
     "./package.json": "./package.json"
   },
@@ -70,7 +105,8 @@
     "uniwind": "^1.12.0"
   },
   "peerDependencies": {
-    "@tabler/icons-react-native": "^3.48.0",
+    "@react-native-community/datetimepicker": "^9.1.0",
+    "lucide-react-native": "^1.57.0",
     "@tanstack/react-form": "^1.33.5",
     "react": ">=19.1.0 <20.0.0",
     "react-native": ">=0.82.0 <0.87.0",
