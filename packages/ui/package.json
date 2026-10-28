@@ -89,7 +89,7 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.metro.json && tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.metro.json && tsc -p tsconfig.build.json --watch --preserveWatchOutput",
+    "dev": "rm -rf dist && tsc -p tsconfig.metro.json && tsc -p tsconfig.build.json --watch --preserveWatchOutput",
     "prepack": "bun run build",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.metro.json"
   },
