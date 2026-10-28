@@ -1,8 +1,7 @@
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { useState } from "react";
 import { Image, Text, View } from "react-native";
-import { Icon } from "#/ui/icon";
-import type { AvatarSize, AvatarStatus } from "./avatar.styles";
+import type { AvatarSize, AvatarStatus } from "#/ui/avatar/avatar.styles";
 import {
   AVATAR_FALLBACK_ICON_SIZES,
   AVATAR_STATUS_LABELS,
@@ -10,12 +9,13 @@ import {
   avatarStatusVariants,
   avatarVariants,
   getAvatarInitials,
-} from "./avatar.styles";
+} from "#/ui/avatar/avatar.styles";
+import { Icon } from "#/ui/icon";
 
-export type { AvatarSize, AvatarStatus } from "./avatar.styles";
+export type { AvatarSize, AvatarStatus } from "#/ui/avatar/avatar.styles";
 
-type NativeViewProps = ComponentProps<typeof View>;
-type NativeImageProps = ComponentProps<typeof Image>;
+type NativeViewProps = ComponentPropsWithRef<typeof View>;
+type NativeImageProps = ComponentPropsWithRef<typeof Image>;
 
 export type AvatarProps = Omit<
   NativeViewProps,
@@ -82,18 +82,16 @@ export function Avatar({
     style: imageStyle,
   };
   const initialsProps = { className: initialsClassName, children: initials };
+  const fallbackContent = initials ? (
+    <Text {...initialsProps} />
+  ) : (
+    <Icon name="user" size={AVATAR_FALLBACK_ICON_SIZES[size]} />
+  );
+  const content = showImage ? <Image {...imageProps} /> : fallbackContent;
 
   return (
     <View {...wrapperProps}>
-      <View {...avatarProps}>
-        {showImage ? (
-          <Image {...imageProps} />
-        ) : initials ? (
-          <Text {...initialsProps} />
-        ) : (
-          <Icon name="user" size={AVATAR_FALLBACK_ICON_SIZES[size]} />
-        )}
-      </View>
+      <View {...avatarProps}>{content}</View>
       {statusProps ? <View {...statusProps} /> : null}
     </View>
   );

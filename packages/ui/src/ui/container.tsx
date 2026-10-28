@@ -1,4 +1,4 @@
-import type { ComponentProps, Ref } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { View } from "react-native";
 import { tv } from "tailwind-variants";
 
@@ -10,7 +10,7 @@ export type ContainerVariant =
   | "section"
   | "card";
 
-type NativeViewProps = ComponentProps<typeof View>;
+type NativeViewProps = ComponentPropsWithRef<typeof View>;
 
 const CONTAINER_VARIANT_STYLES = {
   default: "flex-col",
@@ -32,12 +32,11 @@ const containerVariants = tv({
 
 export type ContainerProps = Omit<NativeViewProps, "className"> & {
   variant?: ContainerVariant;
-  ref?: Ref<View>;
 };
 
-export function Container({ ref, variant, ...viewProps }: ContainerProps) {
+export function Container({ variant, ...viewProps }: ContainerProps) {
   const className = containerVariants({ variant });
   const uniwindViewProps = { ...viewProps, className };
 
-  return <View ref={ref} {...uniwindViewProps} />;
+  return <View {...uniwindViewProps} />;
 }

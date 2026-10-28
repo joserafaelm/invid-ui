@@ -1,11 +1,12 @@
+import type { ComponentPropsWithRef } from "react";
 import type { ThemeColor } from "#/theme/tokens";
 import { useThemeColor } from "#/theme/use-theme-color";
-import type { ComponentProps } from "react";
-import { type IconName, ICON } from "./icon-registry";
+import type { IconName } from "#/ui/icon-registry";
+import { ICON } from "#/ui/icon-registry";
 
-export type { IconName } from "./icon-registry";
+export type { IconName } from "#/ui/icon-registry";
 
-type NativeIconProps = ComponentProps<(typeof ICON)[IconName]>;
+type NativeIconProps = ComponentPropsWithRef<(typeof ICON)[IconName]>;
 
 export type IconVariant = "primary" | "secondary" | "muted";
 

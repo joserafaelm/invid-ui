@@ -51,6 +51,11 @@ function assertValidTheme(theme: INVIDUITheme) {
         `@invid/ui: unknown theme scheme "${scheme}". Supported schemes: ${THEME_SCHEMES.join(", ")}.`,
       );
     }
+    if (typeof colors !== "object" || colors === null) {
+      throw new Error(
+        `@invid/ui: the ${scheme} theme must be an object that maps color names to color strings.`,
+      );
+    }
     for (const [color, value] of Object.entries(colors)) {
       if (!isThemeColor(color) || typeof value !== "string") {
         throw new Error(

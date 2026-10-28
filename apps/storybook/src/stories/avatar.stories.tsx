@@ -1,13 +1,17 @@
 import type { AvatarSize } from "@invid/ui/avatar";
 import { Avatar } from "@invid/ui/avatar";
 import type { Meta, StoryObj } from "@storybook/react-native";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const AVATAR_SIZES = [
   "sm",
   "md",
   "lg",
 ] as const satisfies readonly AvatarSize[];
+
+const styles = StyleSheet.create({
+  sizes: { alignItems: "center", flexDirection: "row", gap: 12 },
+});
 
 const meta = {
   title: "Display/Avatar",
@@ -36,7 +40,7 @@ export const IconFallback: Story = {
 
 export const Sizes: Story = {
   render: (args) => (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+    <View style={styles.sizes}>
       {AVATAR_SIZES.map((size) => (
         <Avatar key={size} {...args} size={size} />
       ))}

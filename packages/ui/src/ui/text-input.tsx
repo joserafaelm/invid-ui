@@ -1,38 +1,37 @@
-import React from 'react';
-import { TextInput as InvTextInput } from 'react-native';
-import { tv } from 'tailwind-variants';
+import type { ComponentPropsWithRef } from "react";
+import { TextInput as NativeTextInput } from "react-native";
+import { tv } from "tailwind-variants";
 
-export type TextInputVariant = 'default' | 'lead' | 'muted';
+export type TextInputVariant = "default" | "lead" | "muted";
 
-type NativeTextInputProps = React.ComponentProps<typeof InvTextInput>;
+type NativeTextInputProps = ComponentPropsWithRef<typeof NativeTextInput>;
 
 export type TextInputProps = Omit<
-    NativeTextInputProps,
-    'className' | 'children'
+  NativeTextInputProps,
+  "children" | "className"
 > & {
-    variant?: TextInputVariant;
-    style?: NativeTextInputProps['style'];
+  variant?: TextInputVariant;
 };
 
 const TEXT_INPUT_VARIANT_STYLES = {
-    default: 'rounded-xl border border-muted-foreground/20 bg-background px-4 py-3 text-base leading-6 text-foreground',
-    lead: 'rounded-xl border border-primary bg-background px-4 py-3 text-lg leading-7 text-foreground',
-    muted: 'rounded-xl border border-muted-foreground/20 bg-background px-4 py-3 text-base leading-6 text-muted-foreground',
+  default: "border-muted-foreground/20 text-base leading-6 text-foreground",
+  lead: "border-primary text-lg leading-7 text-foreground",
+  muted: "border-muted-foreground/20 text-base leading-6 text-muted-foreground",
 } as const satisfies Record<TextInputVariant, string>;
 
-export function TextInput({ variant, style, ...textInputProps }: TextInputProps) {
-    const textInputVariants = tv({
-        variants: {
-            variant: TEXT_INPUT_VARIANT_STYLES,
-        },
-        defaultVariants: {
-            variant: 'default',
-        },
-    });
-    const className = textInputVariants({ variant });
-    const unifiedTextInputProps = { ...textInputProps, className, style };
+const textInputVariants = tv({
+  base: "rounded-xl border bg-background px-4 py-3",
+  variants: {
+    variant: TEXT_INPUT_VARIANT_STYLES,
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-    return <InvTextInput {...unifiedTextInputProps} />;
+export function TextInput({ variant, ...textInputProps }: TextInputProps) {
+  const className = textInputVariants({ variant });
+  const uniwindTextInputProps = { ...textInputProps, className };
+
+  return <NativeTextInput {...uniwindTextInputProps} />;
 }
-
- 

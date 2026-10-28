@@ -36,4 +36,3 @@ export const Lead: Story = {
 export const Muted: Story = {
   args: { variant: "muted" },
 };
-

@@ -1,14 +1,14 @@
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { Text } from "react-native";
 import { tv } from "tailwind-variants";
 
 export type TitleVariant = "default" | "lead" | "muted";
 
-type NativeTextProps = ComponentProps<typeof Text>;
+type NativeTextProps = ComponentPropsWithRef<typeof Text>;
 
 export type TitleProps = Omit<
   NativeTextProps,
-  "className" | "selectionColorClassName"
+  "accessibilityRole" | "className" | "role" | "selectionColorClassName"
 > & {
   variant?: TitleVariant;
 };
@@ -30,7 +30,11 @@ const titleVariants = tv({
 
 export function Title({ variant, ...textProps }: TitleProps) {
   const className = titleVariants({ variant });
-  const uniwindTextProps = { ...textProps, className };
+  const headingProps = {
+    ...textProps,
+    accessibilityRole: "header" as const,
+    className,
+  };
 
-  return <Text {...uniwindTextProps} />;
+  return <Text {...headingProps} />;
 }

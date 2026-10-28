@@ -4,19 +4,27 @@ React Native UI components for iOS and Android. Web is not supported.
 
 ## Requirements
 
-| Dependency                     | Supported range    | Tested version |
-| ------------------------------ | ------------------ | -------------- |
-| React                          | `>=19.1.0 <20.0.0` | `19.2.3`       |
-| React Native                   | `>=0.82.0 <0.87.0` | `0.86.3`       |
-| react-native-gesture-handler   | `^2.28.0`          | `2.32.0`       |
-| react-native-reanimated        | `^4.1.1`           | `4.5.1`        |
-| react-native-safe-area-context | `^5.6.0`           | `5.7.0`        |
-| react-native-svg               | `^15.12.1`         | `15.15.4`      |
-| react-native-worklets          | `>=0.5.1`          | `0.10.1`       |
+| Dependency | Supported range | Tested version |
+| --- | --- | --- |
+| React | `>=19.1.0 <20.0.0` | `19.3.0` |
+| React Native | `>=0.82.0 <0.89.0` | `0.88.0` |
+| react-native-gesture-handler | `^2.28.0 \|\| ^3.0.0` | `3.3.0` |
+| react-native-reanimated | `^4.1.1` | `4.7.1` |
+| react-native-safe-area-context | `^5.6.0` | `5.10.1` |
+| react-native-svg | `^15.12.1` | `15.16.0` |
+| react-native-worklets | `>=0.5.1` | `0.13.0` |
 
-The library is tested with Expo SDK 57, where Expo Go includes all of the native
-packages above. It needs Node.js 20.19+ or 22.12+ (the same minimum as Expo),
-and is published as ES modules only.
+Install these only if you use the components that need them:
+
+| Dependency | Needed for | Supported range | Tested version |
+| --- | --- | --- | --- |
+| `@react-native-community/datetimepicker` | `@invid/ui/date-picker`, `@invid/ui/time-picker` | `^9.1.0` | `9.2.1` |
+| `@tanstack/react-form` | `@invid/ui/form-fields` | `^1.33.5` | `1.33.5` |
+| `lucide-react-native` | `@invid/ui/icons`, `@invid/ui/avatar` | `^1.57.0` | `1.63.0` |
+
+The library is tested with Expo SDK 58, where Expo Go includes all of the native
+packages above. It needs Node.js 22.13+, 24.3+, or 26+ (the same minimum as
+Expo SDK 58), and is published as ES modules only.
 
 ## Install and set up
 
@@ -25,6 +33,10 @@ and is published as ES modules only.
    ```sh
    npx expo install @invid/ui react-native-gesture-handler react-native-reanimated react-native-safe-area-context react-native-svg react-native-worklets
    ```
+
+   Add `lucide-react-native`, `@react-native-community/datetimepicker`, or
+   `@tanstack/react-form` to that command if you use the components that need
+   them.
 
 2. Wrap your Metro config with `withINVIDUI`. It must be the outermost wrapper.
 
@@ -64,7 +76,7 @@ with imports instead:
 ```js
 // metro.config.js
 import { withINVIDUI } from "@invid/ui/metro";
-import { getDefaultConfig } from "expo/metro-config.js";
+import { getDefaultConfig } from "expo/metro-config";
 
 export default withINVIDUI(getDefaultConfig(import.meta.dirname));
 ```
@@ -80,16 +92,8 @@ import type { INVIDUITheme } from "@invid/ui/provider";
 import { INVIDUIProvider } from "@invid/ui/provider";
 
 const theme: INVIDUITheme = {
-  light: {
-    background: "#ffffff",
-    foreground: "#171717",
-    "muted-foreground": "#646464",
-  },
-  dark: {
-    background: "#0a0a0a",
-    foreground: "#fafafa",
-    "muted-foreground": "#a3a3a3",
-  },
+  light: { primary: "#0057b8", background: "#ffffff" },
+  dark: { primary: "#4da3ff", background: "#0a0a0a" },
 };
 
 export default function App() {
@@ -97,9 +101,24 @@ export default function App() {
 }
 ```
 
-The values shown are the defaults, and these three colors are the full list
-today. Define the theme outside the component so it is not recreated on every
-render. An unknown color name is a type error, and throws at runtime in plain
+These are the colors you can set, with their defaults:
+
+| Color | Light default | Dark default |
+| --- | --- | --- |
+| `background` | `#F2F4F5` | `#F2F4F5` |
+| `foreground` | `#171717` | `#171717` |
+| `muted-foreground` | `#646464` | `#646464` |
+| `muted-background` | `#E3F2FD` | `#E3F2FD` |
+| `primary` | `#00728f` | `#00728f` |
+| `primary-foreground` | `#f8fbfc` | `#f8fbfc` |
+| `secondary` | `#0E3052` | `#0E3052` |
+| `secondary-foreground` | `#0f172a` | `#0f172a` |
+| `accent` | `#00AECC` | `#00AECC` |
+| `text` | `#00AECC` | `#00AECC` |
+| `soporte` | `#0085AA` | `#0085AA` |
+
+Define the theme outside the component so it is not recreated on every render.
+An unknown color name is a type error, and throws at runtime in plain
 JavaScript. The theme applies to the whole app, so render one provider with one
 theme.
 
@@ -116,6 +135,20 @@ const backgroundColor = useThemeColor("background");
 
 Each component has its own import path; there is no root import.
 
+| Import path              | Exports                                                   |
+| ------------------------ | --------------------------------------------------------- |
+| `@invid/ui/p`            | `P` (paragraph text)                                      |
+| `@invid/ui/title`        | `Title` (heading, announced as a header)                  |
+| `@invid/ui/button`       | `Button`                                                  |
+| `@invid/ui/text-input`   | `TextInput`                                               |
+| `@invid/ui/number-input` | `NumberInput` (decimal keyboard, sanitized input)         |
+| `@invid/ui/date-picker`  | `DatePicker`                                              |
+| `@invid/ui/time-picker`  | `TimePicker`                                              |
+| `@invid/ui/form-fields`  | `useAppForm` with `TextField`, `NumberField`, `SubmitButton` |
+| `@invid/ui/container`    | `Container` (layout variants)                             |
+| `@invid/ui/icons`        | `Icon`                                                    |
+| `@invid/ui/avatar`       | `Avatar`                                                  |
+
 ```tsx
 import { P } from "@invid/ui/p";
 
@@ -126,9 +159,12 @@ import { P } from "@invid/ui/p";
 </P>;
 ```
 
-`P` has `default`, `lead`, and `muted` variants and accepts every React Native
-`Text` prop. Components are styled through variants, not class names; the native
+Components are styled through named variants, not class names. Each accepts the
+props of the React Native element it renders, including `ref`, and the native
 `style` prop remains available as the final override for layout adjustments.
+`NumberInput` takes either `value` (controlled) or `defaultValue`
+(uncontrolled), not both. The date and time pickers need
+`@react-native-community/datetimepicker` installed in the app.
 
 ## Troubleshooting
 

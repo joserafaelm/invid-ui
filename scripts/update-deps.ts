@@ -10,6 +10,7 @@ import {
   relativeToRoot,
 } from "./workspaces";
 
+const SYNC_ONLY_FLAG = "--sync-only";
 const CATALOG_PROTOCOL = "catalog:";
 const DEFAULT_CATALOG_NAMES = new Set(["", "default"]);
 const INSTALL_FIELDS = [
@@ -248,9 +249,14 @@ const installArtifacts = [
   ),
 ];
 
-logStep("Updating every dependency to its latest version");
-await $`bun update --latest --recursive`.cwd(ROOT_DIR);
-await restorePeerDependencies(peerSnapshots);
+if (process.argv.includes(SYNC_ONLY_FLAG)) {
+  logStep("Installing the declared versions");
+  await $`bun install`.cwd(ROOT_DIR);
+} else {
+  logStep("Updating every dependency to its latest version");
+  await $`bun update --latest --recursive`.cwd(ROOT_DIR);
+  await restorePeerDependencies(peerSnapshots);
+}
 
 const catalogReferences = await collectCatalogReferences(workspaces);
 for (const app of expoApps) {

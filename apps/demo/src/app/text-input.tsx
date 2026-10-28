@@ -1,7 +1,6 @@
 import { Container } from "@invid/ui/container";
 import { P } from "@invid/ui/p";
 import { TextInput } from "@invid/ui/text-input";
-import { Stack } from "expo-router/stack";
 import { useState } from "react";
 
 export default function TextInputRoute() {
@@ -9,8 +8,6 @@ export default function TextInputRoute() {
 
   return (
     <Container variant="screen">
-      <Stack.Screen options={{ title: "TextInput" }} />
-
       <Container variant="section">
         <P variant="lead">TextInput tester</P>
         <P variant="muted">Type below to see the value update live.</P>

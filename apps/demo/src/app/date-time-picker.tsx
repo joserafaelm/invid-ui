@@ -2,7 +2,6 @@ import { Container } from "@invid/ui/container";
 import { DatePicker } from "@invid/ui/date-picker";
 import { P } from "@invid/ui/p";
 import { TimePicker } from "@invid/ui/time-picker";
-import { Stack } from "expo-router/stack";
 import { useState } from "react";
 
 export default function DateTimePickerRoute() {
@@ -11,7 +10,6 @@ export default function DateTimePickerRoute() {
 
   return (
     <Container variant="screen">
-      <Stack.Screen options={{ title: "Date & Time Picker" }} />
       <Container variant="section">
         <P variant="lead">Date and time pickers</P>
         <P variant="muted">

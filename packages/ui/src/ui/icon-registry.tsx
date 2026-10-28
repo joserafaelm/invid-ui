@@ -1,7 +1,3 @@
-
-// to search for icons, go to https://lucide.dev/icons and copy the name of the icon you want to use
-// one you choose an icon, click on the "Copy Component Name" button and paste it into the ICON object below
-
 import {
   Bell,
   Box,
@@ -22,6 +18,12 @@ import {
   User,
 } from "lucide-react-native";
 
+/**
+ * Icons available to `Icon`. To add one, find it at https://lucide.dev/icons,
+ * use "Copy Component Name", import that component above, and add a key here.
+ * Keys containing hyphens must be quoted, for example
+ * `<Icon name="circle-chevron-right" />`.
+ */
 export const ICON = {
   bell: Bell,
   box: Box,
@@ -41,7 +43,5 @@ export const ICON = {
   user: User,
   "circle-chevron-right": CircleChevronRight,
 } as const;
-
-//to use an icon with a space in the name, use the icon name with quotes, for example: <Icon name="circle-chevron-right" />
 
 export type IconName = keyof typeof ICON;

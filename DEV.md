@@ -36,8 +36,11 @@ breaking change.
 
 ## Setup
 
-Requirements: Bun, Node.js 20.19+ or 22.12+ (Expo SDK 57 and Storybook 10),
-Xcode with an iOS Simulator, and Android Studio with an emulator.
+Requirements: Bun, Node.js 22.13+, 24.3+, or 26+ (Expo SDK 58; odd-numbered
+releases are not supported), Xcode 27 or later, and Android Studio with an
+emulator. On Xcode 27, Expo CLI boots and focuses iOS simulators through Device
+Hub, so `bun run demo:ios` and `bun run storybook:ios` need no manual
+simulator setup.
 
 ```sh
 bun install
@@ -104,9 +107,9 @@ check the component inside real navigation and layouts.
    story file is required for every component; see
    [Writing stories](#writing-stories).
 6. **Add a demo screen** at `apps/demo/src/app/<name>.tsx`, then add it to
-   `DEMO_SCREENS` in `apps/demo/src/app/_layout.tsx` to set its title and
-   position in the sidebar menu. A route missing from the list still appears in
-   the menu, after the listed ones, under its file name.
+   `COMPONENT_SCREENS` in `apps/demo/src/demo-screens.ts` with a title and an
+   icon. That one entry adds it to the sidebar menu and to the home screen's
+   list, in that order. Lay the screen out with `Container`.
 7. **Document usage** in [`packages/ui/README.md`](packages/ui/README.md), the
    consumer-facing README. List any new theme color in its Theming section.
 

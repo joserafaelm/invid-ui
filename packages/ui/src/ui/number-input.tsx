@@ -1,85 +1,59 @@
-import React from "react";
-import { TextInput as NativeTextInput } from "react-native";
-import { tv } from "tailwind-variants";
+import { useState } from "react";
+import type { TextInputProps, TextInputVariant } from "#/ui/text-input";
+import { TextInput } from "#/ui/text-input";
 
-export type NumberInputVariant = "default" | "lead" | "muted";
+export type NumberInputVariant = TextInputVariant;
 
-type NativeTextInputProps = React.ComponentProps<typeof NativeTextInput>;
+type NumberInputValueProps =
+  | { value: string; defaultValue?: never }
+  | { value?: never; defaultValue?: string };
 
 export type NumberInputProps = Omit<
-  NativeTextInputProps,
-  | "className"
-  | "children"
-  | "keyboardType"
-  | "multiline"
-  | "onChangeText"
-  | "value"
-  | "defaultValue"
-> & {
-  variant?: NumberInputVariant;
-  value?: string;
-  defaultValue?: string;
-  onChangeText?: (value: string) => void;
-};
-
-const NUMBER_INPUT_VARIANT_STYLES = {
-  default:
-    "rounded-xl border border-muted-foreground/20 bg-background px-4 py-3 text-base leading-6 text-foreground",
-  lead:
-    "rounded-xl border border-primary bg-background px-4 py-3 text-lg leading-7 text-foreground",
-  muted:
-    "rounded-xl border border-muted-foreground/20 bg-background px-4 py-3 text-base leading-6 text-muted-foreground",
-} as const satisfies Record<NumberInputVariant, string>;
-
-const numberInputVariants = tv({
-  variants: {
-    variant: NUMBER_INPUT_VARIANT_STYLES,
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
-
-
+  TextInputProps,
+  "defaultValue" | "keyboardType" | "multiline" | "onChangeText" | "value"
+> &
+  NumberInputValueProps & {
+    onChangeText?: (value: string) => void;
+  };
 
 function normalizeNumberText(value: string): string {
   const sign = value.startsWith("-") ? "-" : "";
   const numericText = value.replace(/[^\d.]/g, "");
   const [integerPart = "", ...fractionParts] = numericText.split(".");
-  const fraction = fractionParts.join("");
+  const fraction = fractionParts.length > 0 ? `.${fractionParts.join("")}` : "";
 
-  return `${sign}${integerPart}${fractionParts.length > 0 ? `.${fraction}` : ""}`;
+  return `${sign}${integerPart}${fraction}`;
 }
 
 export function NumberInput({
-  variant,
   value,
   defaultValue,
   onChangeText,
-  style,
   ...textInputProps
 }: NumberInputProps) {
-  const [internalValue, setInternalValue] = React.useState(() =>
+  const [internalValue, setInternalValue] = useState(() =>
     normalizeNumberText(defaultValue ?? ""),
   );
-  const normalizedValue =
-    value === undefined ? undefined : normalizeNumberText(value);
-  const unifiedTextInputProps = {
-    ...textInputProps,
-    className: numberInputVariants({ variant }),
-    defaultValue: undefined,
-    keyboardType: "decimal-pad" as const,
-    multiline: false,
-    onChangeText: (text: string) => {
-      const normalizedText = normalizeNumberText(text);
-      if (normalizedValue === undefined) {
-        setInternalValue(normalizedText);
-      }
-      onChangeText?.(normalizedText);
-    },
-    style,
-    value: normalizedValue ?? internalValue,
-  };
+  const isControlled = value !== undefined;
+  const displayedValue = isControlled
+    ? normalizeNumberText(value)
+    : internalValue;
 
-  return <NativeTextInput {...unifiedTextInputProps} />;
+  function handleChangeText(text: string) {
+    const normalizedText = normalizeNumberText(text);
+    if (!isControlled) {
+      setInternalValue(normalizedText);
+    }
+    onChangeText?.(normalizedText);
+  }
+
+  return (
+    <TextInput
+      {...textInputProps}
+      keyboardType="decimal-pad"
+      multiline={false}
+      onChangeText={handleChangeText}
+      value={displayedValue}
+    />
+  );
 }

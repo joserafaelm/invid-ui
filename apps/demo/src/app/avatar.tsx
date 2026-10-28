@@ -1,17 +1,19 @@
 import { Avatar } from "@invid/ui/avatar";
 import { Container } from "@invid/ui/container";
 import { P } from "@invid/ui/p";
-import { Stack } from "expo-router/stack";
+import { StyleSheet } from "react-native";
 
 const SAMPLE_AVATAR_SOURCE = {
   uri: "https://i.pravatar.cc/150?img=12",
 };
 
+const styles = StyleSheet.create({
+  row: { gap: 8, marginVertical: 3 },
+});
+
 export default function AvatarRoute() {
   return (
     <Container variant="screen">
-      <Stack.Screen options={{ title: "Avatar" }} />
-
       <Container variant="section">
         <P variant="lead">Avatar</P>
         <P variant="muted">
@@ -22,7 +24,7 @@ export default function AvatarRoute() {
 
       <Container variant="section">
         <P variant="muted">Image</P>
-        <Container variant="row" style={{ gap: 8, marginTop: 3, marginBottom: 3 }}>
+        <Container style={styles.row} variant="row">
           <Avatar
             name="Sample Person"
             source={SAMPLE_AVATAR_SOURCE}
@@ -34,7 +36,7 @@ export default function AvatarRoute() {
 
       <Container variant="section">
         <P variant="muted">Initials</P>
-        <Container variant="row" style={{ gap: 8, marginTop: 3, marginBottom: 3 }}>
+        <Container style={styles.row} variant="row">
           <Avatar name="Yariel Santiago" size="sm" status="online" />
           <Avatar name="Jordan Lee" />
           <Avatar name="Alex Morgan" size="lg" status="busy" />

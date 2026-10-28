@@ -1,7 +1,6 @@
 import { Container } from "@invid/ui/container";
 import { NumberInput } from "@invid/ui/number-input";
 import { P } from "@invid/ui/p";
-import { Stack } from "expo-router/stack";
 import { useState } from "react";
 
 export default function NumberInputRoute() {
@@ -9,8 +8,6 @@ export default function NumberInputRoute() {
 
   return (
     <Container variant="screen">
-      <Stack.Screen options={{ title: "Number Input" }} />
-
       <Container variant="section">
         <P variant="lead">NumberInput tester</P>
         <P variant="muted">

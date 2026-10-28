@@ -5,6 +5,17 @@ to do each step and holds the full
 [component standards](DEV.md#component-standards) for API design, typing,
 accessibility, and styling.
 
+## File names
+
+Every file name is lowercase kebab-case, including files that hold a React
+component: `text-input.tsx` exports `TextInput`, `date-time-field.tsx` exports
+`DateTimeField`. This applies to the library, the demo app's routes (so their
+URLs are kebab-case too, such as `/number-input`), stories
+(`number-input.stories.tsx`), and scripts. Code identifiers keep their usual
+casing: components and types in PascalCase, everything else in camelCase or
+`SCREAMING_SNAKE_CASE` for module constants. The public subpath matches the file
+name, so `src/ui/text-input.tsx` is imported as `@invid/ui/text-input`.
+
 ## Every new component needs
 
 - **A story file.** A component without
@@ -15,8 +26,8 @@ accessibility, and styling.
   [Writing stories](DEV.md#writing-stories).
 - **An export-map entry** in `packages/ui/package.json`, so apps and consumers can
   import it as `@invid/ui/<name>`.
-- **A demo screen** in `apps/demo/src/app/`, listed in `DEMO_SCREENS` in the
-  demo's `_layout.tsx` so it appears in the sidebar menu.
+- **A demo screen** in `apps/demo/src/app/`, listed in `COMPONENT_SCREENS` in
+  `apps/demo/src/demo-screens.ts` so it appears in the sidebar and home screen.
 - **Usage documentation** in [`packages/ui/README.md`](packages/ui/README.md),
   the README consumers read. A new theme color is listed there too.
 

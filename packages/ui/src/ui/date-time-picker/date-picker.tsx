@@ -1,99 +1,31 @@
-import { useThemeColor } from "#/theme/use-theme-color";
-import DateTimePicker, {
-  DateTimePickerAndroid,
-} from "@react-native-community/datetimepicker";
-import { useState } from "react";
-import { Platform } from "react-native";
 import type {
-  PickerFieldAccessibilityProps,
+  NativePickerOptions,
+  PickerFieldProps,
   PickerVariant,
-} from "./picker-field";
-import { PickerField } from "./picker-field";
+} from "#/ui/date-time-picker/date-time-field";
+import { DateTimeField } from "#/ui/date-time-picker/date-time-field";
 
 export type DateTimePickerVariant = PickerVariant;
 
-export type DatePickerProps = PickerFieldAccessibilityProps & {
-  value: Date | null;
-  onChange: (value: Date) => void;
-  placeholder?: string;
-  variant?: DateTimePickerVariant;
-  disabled?: boolean;
-  minimumDate?: Date;
-  maximumDate?: Date;
-};
+export type DatePickerProps = PickerFieldProps &
+  Pick<NativePickerOptions, "maximumDate" | "minimumDate">;
+
+const DATE_PLACEHOLDER = "Select a date";
+
+const DATE_FORMAT_OPTIONS = {
+  dateStyle: "medium",
+} as const satisfies Intl.DateTimeFormatOptions;
 
 export function DatePicker({
-  value,
-  onChange,
-  placeholder = "Select a date",
-  variant,
-  disabled,
-  minimumDate,
-  maximumDate,
-  accessibilityHint,
-  accessibilityLabel,
-  style,
-  testID,
+  placeholder = DATE_PLACEHOLDER,
+  ...pickerProps
 }: DatePickerProps) {
-  const [visible, setVisible] = useState(false);
-  const [draftValue, setDraftValue] = useState(value ?? new Date());
-  const foregroundColor = useThemeColor("foreground");
-  const primaryColor = useThemeColor("primary");
-  const formattedValue = value
-    ? new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(value)
-    : null;
-
-  const openPicker = () => {
-    const initialValue = value ?? new Date();
-
-    if (Platform.OS === "android") {
-      DateTimePickerAndroid.open({
-        mode: "date",
-        value: initialValue,
-        display: "default",
-        ...(minimumDate === undefined ? {} : { minimumDate }),
-        ...(maximumDate === undefined ? {} : { maximumDate }),
-        onValueChange: (_event, selectedValue) => onChange(selectedValue),
-      });
-      return;
-    }
-
-    setDraftValue(initialValue);
-    setVisible(true);
-  };
-
-  const confirmPicker = () => {
-    onChange(draftValue);
-    setVisible(false);
-  };
-  const pickerProps = {
-    accentColor: primaryColor,
-    display: "spinner" as const,
-    mode: "date" as const,
-    onValueChange: (_event: unknown, selectedValue: Date) =>
-      setDraftValue(selectedValue),
-    textColor: foregroundColor,
-    value: draftValue,
-    ...(maximumDate === undefined ? {} : { maximumDate }),
-    ...(minimumDate === undefined ? {} : { minimumDate }),
-  };
-
   return (
-    <PickerField
-      accessibilityHint={accessibilityHint}
-      accessibilityLabel={accessibilityLabel}
-      disabled={disabled ?? false}
-      onCancel={() => setVisible(false)}
-      onConfirm={confirmPicker}
-      onOpen={openPicker}
+    <DateTimeField
+      {...pickerProps}
+      formatOptions={DATE_FORMAT_OPTIONS}
+      mode="date"
       placeholder={placeholder}
-      style={style}
-      testID={testID}
-      value={formattedValue}
-      variant={variant ?? "default"}
-      visible={visible}
-    >
-      <DateTimePicker {...pickerProps} />
-    </PickerField>
+    />
   );
 }

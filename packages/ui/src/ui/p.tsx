@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentPropsWithRef } from "react";
 import { Text } from "react-native";
 import { tv } from "tailwind-variants";
 
@@ -19,7 +19,7 @@ const pVariants = tv({
   },
 });
 
-type NativeTextProps = ComponentProps<typeof Text>;
+type NativeTextProps = ComponentPropsWithRef<typeof Text>;
 
 export type PProps = Omit<
   NativeTextProps,

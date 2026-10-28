@@ -1,7 +1,7 @@
 import path from "node:path";
 import { withINVIDUI } from "@invid/ui/metro";
 import { withStorybook } from "@storybook/react-native/metro/withStorybook";
-import { getDefaultConfig } from "expo/metro-config.js";
+import { getDefaultConfig } from "expo/metro-config";
 
 const config = getDefaultConfig(import.meta.dirname);
 

@@ -1,76 +1,31 @@
 import { Button } from "@invid/ui/button";
+import { Container } from "@invid/ui/container";
 import { Icon } from "@invid/ui/icons";
 import { P } from "@invid/ui/p";
 import { Link } from "expo-router";
-import { ScrollView, View } from "react-native";
-import { screenStyles } from "@/styles/screen";
+import { ScrollView } from "react-native";
+import { COMPONENT_SCREENS } from "@/demo-screens";
 
-const P_ROUTE = "/p";
-const AVATAR_ROUTE = "/Avatar";
-const BUTTON_ROUTE = "/Button";
-const TEXT_INPUT_ROUTE = "/text-input";
-const NUMBER_INPUT_ROUTE = "/NumberInput";
-const FORM_ROUTE = "/Form";
-const TITLE_ROUTE = "/Title";
-const ICONS_ROUTE = "/Icons";
-const CONTAINER_ROUTE = "/container";
-const DATE_TIME_PICKER_ROUTE = "/DateTimePicker";
+const LINK_ICON_SIZE = 16;
 
 export default function OverviewRoute() {
+  const componentLinks = COMPONENT_SCREENS.map(({ icon, name, title }) => (
+    <Link asChild={true} href={`/${name}`} key={name}>
+      <Button icon={<Icon name={icon} size={LINK_ICON_SIZE} />} title={title} />
+    </Link>
+  ));
+
   return (
     <ScrollView>
-      <View style={screenStyles.screen}>
-        <View style={screenStyles.section}>
+      <Container variant="screen">
+        <Container variant="section">
           <P variant="lead">INVID UI</P>
           <P variant="muted">
-            Open the menu to browse a demo screen for each public component.
+            Open the menu, or pick a component below, to browse its demo screen.
           </P>
-
-          <Link asChild={true} href={AVATAR_ROUTE}>
-            <Button icon={<Icon name="user" size={16} />} title="Avatar" />
-          </Link>
-          <Link asChild={true} href={P_ROUTE}>
-            <Button icon={<Icon name="type" size={16} />} title="P" />
-          </Link>
-          <Link asChild={true} href={BUTTON_ROUTE}>
-            <Button icon={<Icon name="pointer" size={16} />} title="Button" />
-          </Link>
-          <Link asChild={true} href={TEXT_INPUT_ROUTE}>
-            <Button
-              icon={<Icon name="clipboardList" size={16} />}
-              title="Text Input"
-            />
-          </Link>
-          <Link asChild={true} href={NUMBER_INPUT_ROUTE}>
-            <Button
-              icon={<Icon name="hash" size={16} />}
-              title="Number Input"
-            />
-          </Link>
-          <Link asChild={true} href={FORM_ROUTE}>
-            <Button
-              icon={<Icon name="clipboardList" size={16} />}
-              title="Form"
-            />
-          </Link>
-
-          <Link asChild={true} href={TITLE_ROUTE}>
-            <Button icon={<Icon name="type" size={16} />} title="Title" />
-          </Link>
-          <Link asChild={true} href={ICONS_ROUTE}>
-            <Button icon={<Icon name="shapes" size={16} />} title="Icons" />
-          </Link>
-          <Link asChild={true} href={CONTAINER_ROUTE}>
-            <Button icon={<Icon name="box" size={16} />} title="Container" />
-          </Link>
-          <Link asChild={true} href={DATE_TIME_PICKER_ROUTE}>
-            <Button
-              icon={<Icon name="calendar" size={16} />}
-              title="Date & Time Picker"
-            />
-          </Link>
-        </View>
-      </View>
+        </Container>
+        <Container variant="section">{componentLinks}</Container>
+      </Container>
     </ScrollView>
   );
 }

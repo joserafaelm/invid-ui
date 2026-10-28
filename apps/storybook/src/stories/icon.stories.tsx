@@ -1,7 +1,7 @@
 import type { IconName, IconVariant } from "@invid/ui/icons";
 import { Icon } from "@invid/ui/icons";
 import type { Meta, StoryObj } from "@storybook/react-native";
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 const ICON_NAMES = [
   "bell",
@@ -31,6 +31,16 @@ const ICON_VARIANTS = [
 
 const ICON_SIZES = [16, 20, 24] as const;
 const ICON_STROKE_WIDTHS = [1.5, 2, 2.5] as const;
+
+const styles = StyleSheet.create({
+  gallery: {
+    alignItems: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 20,
+  },
+  sizes: { alignItems: "center", flexDirection: "row", gap: 16 },
+});
 
 const meta = {
   title: "Display/Icon",
@@ -77,7 +87,7 @@ export const Muted: Story = {
 
 export const Sizes: Story = {
   render: (args) => (
-    <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
+    <View style={styles.sizes}>
       {ICON_SIZES.map((size) => (
         <Icon key={size} {...args} size={size} />
       ))}
@@ -87,14 +97,7 @@ export const Sizes: Story = {
 
 export const Gallery: Story = {
   render: (args) => (
-    <View
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-        alignItems: "center",
-        gap: 20,
-      }}
-    >
+    <View style={styles.gallery}>
       {ICON_NAMES.map((name) => (
         <Icon key={name} {...args} name={name} />
       ))}

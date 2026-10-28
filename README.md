@@ -28,6 +28,7 @@ bun run demo           # or demo:ios / demo:android
 bun run storybook      # or storybook:ios / storybook:android
 bun run dev            # rebuild @invid/ui on change (second terminal)
 bun run deps:update    # update every dependency, then sync with the Expo SDK
+bun run deps:sync      # align Expo-managed packages with the installed Expo SDK
 bun run clean          # delete node_modules, bun.lock, and generated build output
 ```
 
@@ -52,6 +53,12 @@ run the same JavaScript and declarations a consumer gets, with the same setup:
   Add Expo and native packages from the owning workspace with
   `bunx expo install <package>`, then move shared versions into the catalog.
   `bun pm pack` replaces `catalog:` and `workspace:` with real versions.
+- **Expo SDK upgrades:** set the new `expo` range in the root catalog (for
+  example `~58.0.21`), then run `bun run deps:sync`. It installs that Expo
+  version, runs `expo install --fix` in each app, moves Expo's pins back into the
+  catalog, and verifies each app, without updating unrelated packages. Then
+  follow the SDK's own upgrade notes and widen `@invid/ui`'s peer ranges once
+  the new versions pass testing.
 - **Dependency updates:** `bun run deps:update` (`scripts/update-deps.ts`) runs
   `bun update --latest --recursive`, then `expo install --fix` in each Expo app.
   Both commands damage monorepo state when run alone: the update rewrites the

@@ -1,11 +1,10 @@
-import { screenStyles } from "@/styles/screen";
+import { Container } from "@invid/ui/container";
 import { P } from "@invid/ui/p";
-import { View } from "react-native";
 
 export default function PRoute() {
   return (
-    <View style={screenStyles.screen}>
-      <View style={screenStyles.section}>
+    <Container variant="screen">
+      <Container variant="section">
         <P variant="lead">Lead</P>
         <P>
           Default paragraph text uses the semantic foreground color and supports
@@ -14,16 +13,16 @@ export default function PRoute() {
         <P variant="muted">
           Muted paragraphs use the secondary semantic foreground color.
         </P>
-      </View>
+      </Container>
 
-      <View style={screenStyles.section}>
+      <Container variant="section">
         <P variant="lead">Native props</P>
         <P numberOfLines={2} selectable={true}>
           P accepts native React Native Text props, including selection,
           truncation, accessibility, style, and ref. Styling is selected through
           semantic variants instead of class names.
         </P>
-      </View>
-    </View>
+      </Container>
+    </Container>
   );
 }
