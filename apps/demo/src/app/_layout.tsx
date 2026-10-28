@@ -7,6 +7,14 @@ import { useColorScheme } from "react-native";
 const DEMO_SCREENS = [
   { name: "index", title: "Overview" },
   { name: "p", title: "P" },
+  { name: "Button", title: "Button" },
+  { name: "text-input", title: "Text Input" },
+  { name: "NumberInput", title: "Number Input" },
+  { name: "Form", title: "Form" },
+  { name: "Title", title: "Title" },
+  { name: "Icons", title: "Icons" },
+  { name: "container", title: "Container" },
+  { name: "DateTimePicker", title: "Date & Time Picker" },
 ] as const;
 
 function DemoNavigator() {

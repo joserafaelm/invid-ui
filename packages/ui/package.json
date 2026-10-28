@@ -23,29 +23,36 @@
       "default": "./dist/theme/use-theme-color.js"
     },
     "./button": {
-      "types": "./dist/ui/Button.d.ts",
-      "default": "./dist/ui/Button.js"
+      "types": "./dist/ui/button.d.ts",
+      "default": "./dist/ui/button.js"
     },
     "./container": {
       "types": "./dist/ui/container.d.ts",
       "default": "./dist/ui/container.js"
     },
     "./text-input": {
-      "types": "./dist/ui/TextInput.d.ts",
-      "default": "./dist/ui/TextInput.js"
+      "types": "./dist/ui/text-input.d.ts",
+      "default": "./dist/ui/text-input.js"
     },
     "./number-input": {
-      "types": "./dist/ui/NumberInput.d.ts",
-      "default": "./dist/ui/NumberInput.js"
+      "types": "./dist/ui/number-input.d.ts",
+      "default": "./dist/ui/number-input.js"
     },
     "./form-fields": {
-      "types": "./dist/ui/FormFields.d.ts",
-      "default": "./dist/ui/FormFields.js"
+      "types": "./dist/ui/form-fields.d.ts",
+      "default": "./dist/ui/form-fields.js"
     },
-
+    "./date-picker": {
+      "types": "./dist/ui/date-time-picker/date-picker.d.ts",
+      "default": "./dist/ui/date-time-picker/date-picker.js"
+    },
+    "./time-picker": {
+      "types": "./dist/ui/date-time-picker/time-picker.d.ts",
+      "default": "./dist/ui/date-time-picker/time-picker.js"
+    },
     "./title": {
-      "types": "./dist/ui/Title.d.ts",
-      "default": "./dist/ui/Title.js"
+      "types": "./dist/ui/title.d.ts",
+      "default": "./dist/ui/title.js"
     },
     "./icons": {
       "types": "./dist/ui/icon.d.ts",
@@ -70,8 +77,9 @@
     "uniwind": "^1.12.0"
   },
   "peerDependencies": {
-    "lucide-react-native": "^1.57.0",
+    "@react-native-community/datetimepicker": "^9.1.0",
     "@tanstack/react-form": "^1.33.5",
+    "lucide-react-native": "^1.57.0",
     "react": ">=19.1.0 <20.0.0",
     "react-native": ">=0.82.0 <0.87.0",
     "react-native-gesture-handler": "^2.28.0",
@@ -81,6 +89,8 @@
     "react-native-worklets": ">=0.5.1"
   },
   "devDependencies": {
+    "@react-native-community/datetimepicker": "catalog:",
+    "@tanstack/react-form": "catalog:",
     "@types/node": "^24.0.0",
     "@types/react": "catalog:",
     "metro-config": "^0.84.3",

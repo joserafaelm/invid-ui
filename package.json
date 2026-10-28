@@ -5,6 +5,8 @@
   "workspaces": {
     "packages": ["apps/*", "packages/*"],
     "catalog": {
+      "@react-native-community/datetimepicker": "9.1.0",
+      "@tanstack/react-form": "^1.33.5",
       "@types/react": "~19.2.4",
       "expo": "~57.0.26",
       "react": "19.2.3",

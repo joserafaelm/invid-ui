@@ -1,6 +1,6 @@
+import { screenStyles } from "@/styles/screen";
 import { P } from "@invid/ui/p";
 import { View } from "react-native";
-import { screenStyles } from "@/styles/screen";
 
 export default function PRoute() {
   return (
