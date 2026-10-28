@@ -8,19 +8,15 @@ React Native UI components for iOS and Android. Web is not supported.
 | --- | --- | --- |
 | React | `>=19.1.0 <20.0.0` | `19.3.0` |
 | React Native | `>=0.82.0 <0.89.0` | `0.88.0` |
-| react-native-gesture-handler | `^2.28.0 \|\| ^3.0.0` | `3.3.0` |
-| react-native-reanimated | `^4.1.1` | `4.7.1` |
-| react-native-safe-area-context | `^5.6.0` | `5.10.1` |
-| react-native-svg | `^15.12.1` | `15.16.0` |
-| react-native-worklets | `>=0.5.1` | `0.13.0` |
 
 Install these only if you use the components that need them:
 
 | Dependency | Needed for | Supported range | Tested version |
 | --- | --- | --- | --- |
 | `@react-native-community/datetimepicker` | `@invid/ui/date-picker`, `@invid/ui/time-picker` | `^9.1.0` | `9.2.1` |
-| `@tanstack/react-form` | `@invid/ui/form-fields` | `^1.33.5` | `1.33.5` |
+| `@tanstack/react-form` | `@invid/ui/form-fields`, `@invid/ui/form-field` | `^1.33.5` | `1.33.5` |
 | `lucide-react-native` | `@invid/ui/icons`, `@invid/ui/avatar` | `^1.57.0` | `1.63.0` |
+| `react-native-svg` | `@invid/ui/icons`, `@invid/ui/avatar` | `^15.12.1` | `15.16.0` |
 
 The library is tested with Expo SDK 58, where Expo Go includes all of the native
 packages above. It needs Node.js 22.13+, 24.3+, or 26+ (the same minimum as
@@ -28,15 +24,15 @@ Expo SDK 58), and is published as ES modules only.
 
 ## Install and set up
 
-1. Install the package and the native packages it needs. In an Expo app:
+1. Install the package. In an Expo app:
 
    ```sh
-   npx expo install @invid/ui react-native-gesture-handler react-native-reanimated react-native-safe-area-context react-native-svg react-native-worklets
+   npx expo install @invid/ui
    ```
 
-   Add `lucide-react-native`, `@react-native-community/datetimepicker`, or
-   `@tanstack/react-form` to that command if you use the components that need
-   them.
+   Add `lucide-react-native` and `react-native-svg`,
+   `@react-native-community/datetimepicker`, or `@tanstack/react-form` to that
+   command if you use the components that need them.
 
 2. Wrap your Metro config with `withINVIDUI`. It must be the outermost wrapper.
 
@@ -116,6 +112,9 @@ These are the colors you can set, with their defaults:
 | `accent` | `#00AECC` | `#00AECC` |
 | `text` | `#00AECC` | `#00AECC` |
 | `soporte` | `#0085AA` | `#0085AA` |
+| `danger` | `#C62828` | `#C62828` |
+| `success` | `#17C964` | `#17C964` |
+| `warning` | `#F5A524` | `#F5A524` |
 
 Define the theme outside the component so it is not recreated on every render.
 An unknown color name is a type error, and throws at runtime in plain
@@ -141,10 +140,15 @@ Each component has its own import path; there is no root import.
 | `@invid/ui/title`        | `Title` (heading, announced as a header)                  |
 | `@invid/ui/button`       | `Button`                                                  |
 | `@invid/ui/text-input`   | `TextInput`                                               |
+| `@invid/ui/text-area`    | `TextArea` (multiline text, at least four lines tall)     |
 | `@invid/ui/number-input` | `NumberInput` (decimal keyboard, sanitized input)         |
+| `@invid/ui/phone-input`  | `PhoneInput` (phone keyboard and phone number autofill)   |
+| `@invid/ui/select`       | `Select` (choose one option from a list in a dialog)      |
+| `@invid/ui/radio-group`  | `RadioGroup` (choose one of a few visible options)        |
 | `@invid/ui/date-picker`  | `DatePicker`                                              |
 | `@invid/ui/time-picker`  | `TimePicker`                                              |
-| `@invid/ui/form-fields`  | `useAppForm` with `TextField`, `NumberField`, `SubmitButton` |
+| `@invid/ui/form-fields`  | `useAppForm`, `withForm`, `withFieldGroup`, `extendForm`; see [Forms](form.md) |
+| `@invid/ui/form-field`   | `FormField`, `useFieldContext`, `useFormContext`, `useFieldError`, for custom fields |
 | `@invid/ui/container`    | `Container` (layout variants)                             |
 | `@invid/ui/icons`        | `Icon`                                                    |
 | `@invid/ui/avatar`       | `Avatar`                                                  |
@@ -166,6 +170,40 @@ props of the React Native element it renders, including `ref`, and the native
 (uncontrolled), not both. The date and time pickers need
 `@react-native-community/datetimepicker` installed in the app.
 
+`Select` and `RadioGroup` are controlled: pass `value` (the selected option's
+`value`, or `undefined`) and `onValueChange`. Both require `accessibilityLabel`,
+which `Select` also shows as the title of its list. Options are
+`{ label: string; value: string; disabled?: boolean }`:
+
+```tsx
+import { Select } from "@invid/ui/select";
+
+const COUNTRIES = [
+  { label: "Mexico", value: "mx" },
+  { label: "Spain", value: "es" },
+];
+
+const [country, setCountry] = useState<string>();
+
+<Select
+  accessibilityLabel="Country"
+  onValueChange={setCountry}
+  options={COUNTRIES}
+  placeholder="Choose a country"
+  value={country}
+/>;
+```
+
+The text inputs, `Select`, and `RadioGroup` accept `invalid` to draw the
+danger color; show an error message with it, since color alone does not say
+what is wrong.
+
+### Forms
+
+For forms with validation, use `@invid/ui/form-fields`. It provides fields with
+a label, helper text, and error message, validates with a schema such as Zod,
+and handles submitting. Read the [forms guide](form.md).
+
 ## Troubleshooting
 
 | Symptom                                   | Fix                                                                                  |
@@ -174,6 +212,7 @@ props of the React Native element it renders, including `ref`, and the native
 | Error: `theme color "…" is unavailable`   | Render `INVIDUIProvider` above the component, and check the Metro config is wrapped. |
 | Components render unstyled after an upgrade | Start Metro once with a clean cache: `npx expo start --clear`.                      |
 | Dark mode never activates                 | Set `"userInterfaceStyle": "automatic"` in `app.json`.                                |
+| Form errors                               | See [Forms: Troubleshooting](form.md#troubleshooting).                                |
 
 ## Development
 

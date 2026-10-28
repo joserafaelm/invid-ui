@@ -53,8 +53,8 @@ import { P } from "#/ui/p";
 
 ## Keep the engine private
 
-The library is built on Uniwind and HeroUI Native, and consumers must never have
-to know. Do not expose either in props, types, exports, error messages, or
+The library is built on Uniwind (Tailwind classes), and consumers must never
+have to know. Do not expose it in props, types, exports, error messages, or
 consumer documentation, and do not use class names outside `packages/ui`. See
 [The engine stays private](DEV.md#the-engine-stays-private).
 

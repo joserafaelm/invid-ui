@@ -2,10 +2,15 @@ import { INVIDUIProvider } from "@invid/ui/provider";
 import { useThemeColor } from "@invid/ui/theme";
 import { DarkTheme, DefaultTheme, ThemeProvider } from "expo-router";
 import { Drawer } from "expo-router/drawer";
-import { useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { COMPONENT_SCREENS, OVERVIEW_SCREEN } from "@/demo-screens";
 
 const DEMO_SCREENS = [OVERVIEW_SCREEN, ...COMPONENT_SCREENS];
+
+const styles = StyleSheet.create({
+  root: { flex: 1 },
+});
 
 function DemoNavigator() {
   const colorScheme = useColorScheme();
@@ -34,8 +39,10 @@ function DemoNavigator() {
 
 export default function RootLayout() {
   return (
-    <INVIDUIProvider>
-      <DemoNavigator />
-    </INVIDUIProvider>
+    <GestureHandlerRootView style={styles.root}>
+      <INVIDUIProvider>
+        <DemoNavigator />
+      </INVIDUIProvider>
+    </GestureHandlerRootView>
   );
 }

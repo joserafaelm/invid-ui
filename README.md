@@ -43,8 +43,8 @@ run the same JavaScript and declarations a consumer gets, with the same setup:
 
 - **Bun only:** install with `bun install` and run tools with `bunx`. Do not use
   npm, Yarn, pnpm, or `npx`.
-- **Private engine:** the library is built on Uniwind and HeroUI Native, but
-  consumers never see either. The apps use no class names and no styling
+- **Private engine:** the library is built on Uniwind (Tailwind classes), but
+  consumers never see it. The apps use no class names and no styling
   library of their own. `withINVIDUI` writes the generated stylesheet to a
   git-ignored `.invid-ui/` folder in each app. See
   [The engine stays private](DEV.md#the-engine-stays-private).

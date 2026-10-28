@@ -6,6 +6,8 @@ const P_VARIANTS = [
   "default",
   "lead",
   "muted",
+  "label",
+  "danger",
 ] as const satisfies readonly PVariant[];
 
 const DEFAULT_TEXT =
@@ -43,6 +45,14 @@ export const Lead: Story = {
 
 export const Muted: Story = {
   args: { variant: "muted" },
+};
+
+export const Label: Story = {
+  args: { children: "Email address", variant: "label" },
+};
+
+export const Danger: Story = {
+  args: { children: "Enter a valid email address.", variant: "danger" },
 };
 
 export const Truncated: Story = {

@@ -36,3 +36,11 @@ export const Lead: Story = {
 export const Muted: Story = {
   args: { variant: "muted" },
 };
+
+export const Invalid: Story = {
+  args: { defaultValue: "not-an-email", invalid: true },
+};
+
+export const Disabled: Story = {
+  args: { defaultValue: "Read only", editable: false },
+};

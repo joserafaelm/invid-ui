@@ -16,7 +16,7 @@ Inside `packages/ui/src`:
 
 | Folder      | Holds                                                                  |
 | ----------- | ---------------------------------------------------------------------- |
-| `ui/`       | One file per public component.                                         |
+| `ui/`       | One file per public component. Inputs and forms live in `ui/form/`.    |
 | `theme/`    | `tokens.ts` (the color definitions) and the `useThemeColor` hook.      |
 | `provider/` | `INVIDUIProvider`, which applies the consumer's theme.                 |
 | `metro/`    | `withINVIDUI`, the Metro wrapper. Runs in Node, not in the app.        |
@@ -29,10 +29,9 @@ export-map entry and has been built.
 
 The apps are set up exactly like a consumer's app: `withINVIDUI` in
 `metro.config.js`, `INVIDUIProvider` at the root, and no styling library of
-their own. The library is built on Uniwind (Tailwind classes) and HeroUI Native,
-but both are private implementation details. Nothing a consumer imports,
-configures, or writes may name them, so either can be replaced without a
-breaking change.
+their own. The library is built on Uniwind (Tailwind classes), a private
+implementation detail. Nothing a consumer imports, configures, or writes may
+name it, so it can be replaced without a breaking change.
 
 ## Setup
 
@@ -265,18 +264,20 @@ Check each story on iOS and Android with `bun run storybook:ios` and
 
 ### The engine stays private
 
-- Uniwind, Tailwind, and HeroUI Native are regular dependencies of the library,
-  never peer dependencies, and never appear in a public type, prop, export, error
-  message, or document written for consumers.
+- Uniwind and Tailwind are regular dependencies of the library, never peer
+  dependencies, and never appear in a public type, prop, export, error message,
+  or document written for consumers.
 - The consumer-facing surface is `withINVIDUI` (`@invid/ui/metro`),
   `INVIDUIProvider` and its `theme` prop (`@invid/ui/provider`), `useThemeColor`
   (`@invid/ui/theme`), and each component's own props. The theme is a plain
   TypeScript object of our own color names; CSS is generated from it internally
-  and never accepted from consumers. Wrap a HeroUI component
-  behind our own props instead of re-exporting it.
-- Native packages the engine needs (Gesture Handler, Reanimated, Worklets, Safe
-  Area Context, SVG) are peer dependencies, because the consumer's app must
-  install native modules itself. Adding one is a breaking change.
+  and never accepted from consumers. Wrap any third-party component behind our
+  own props instead of re-exporting it.
+- The engine needs no native packages. A native package that a component needs
+  is a peer dependency, because the consumer's app must install native modules
+  itself; it is an optional peer behind the component's own subpath when only
+  some components need it (SVG for icons, the date-time picker for the
+  pickers). Adding a required native peer is a breaking change.
 
 ### Theming
 

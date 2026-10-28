@@ -1,11 +1,7 @@
 import "#/internal/styles";
 
-import type { HeroUINativeConfigRaw } from "heroui-native/provider-raw";
-import { HeroUINativeProviderRaw } from "heroui-native/provider-raw";
 import type { ReactNode } from "react";
 import { useLayoutEffect, useRef } from "react";
-import { StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Uniwind } from "uniwind";
 import type { ThemeColor, ThemeScheme } from "#/theme/tokens";
 import {
@@ -14,14 +10,6 @@ import {
   THEME_SCHEMES,
   themeColorNames,
 } from "#/theme/tokens";
-
-const ENGINE_CONFIG = {
-  devInfo: { stylingPrinciples: false },
-} as const satisfies HeroUINativeConfigRaw;
-
-const styles = StyleSheet.create({
-  root: { flex: 1 },
-});
 
 /**
  * Color overrides for the light and dark appearance. Colors left out keep
@@ -113,11 +101,5 @@ export function INVIDUIProvider({
     appliedSignature.current = signature;
   }, [theme]);
 
-  return (
-    <GestureHandlerRootView style={styles.root}>
-      <HeroUINativeProviderRaw config={ENGINE_CONFIG}>
-        {children}
-      </HeroUINativeProviderRaw>
-    </GestureHandlerRootView>
-  );
+  return children;
 }

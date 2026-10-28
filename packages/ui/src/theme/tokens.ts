@@ -62,6 +62,21 @@ export const THEME_COLORS = {
     light: "#0085AA",
     dark: "#0085AA",
   },
+  danger: {
+    engineVariable: "--danger",
+    light: "#C62828",
+    dark: "#C62828",
+  },
+  success: {
+    engineVariable: "--success",
+    light: "#17C964",
+    dark: "#17C964",
+  },
+  warning: {
+    engineVariable: "--warning",
+    light: "#F5A524",
+    dark: "#F5A524",
+  },
 } as const satisfies Record<string, ThemeColorDefinition>;
 
 export type ThemeColor = keyof typeof THEME_COLORS;

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { TextInputProps, TextInputVariant } from "#/ui/text-input";
-import { TextInput } from "#/ui/text-input";
+import type { TextInputProps, TextInputVariant } from "#/ui/form/text-input";
+import { TextInput } from "#/ui/form/text-input";
 
 export type NumberInputVariant = TextInputVariant;
 

@@ -43,7 +43,6 @@ function renderStyles(generatedDir: string) {
   const imports = [
     requireFromPackage.resolve("tailwindcss/index.css"),
     path.join(engineDir, "uniwind.css"),
-    requireFromPackage.resolve("heroui-native/styles"),
   ].map((target) => `@import "${toImportPath(generatedDir, target)}";`);
   const source = `@source "${toImportPath(generatedDir, path.join(PACKAGE_ROOT, "dist"))}";`;
   const aliases = themeColorNames().map(

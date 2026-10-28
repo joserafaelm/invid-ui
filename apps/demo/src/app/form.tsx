@@ -1,115 +1,149 @@
 import { Container } from "@invid/ui/container";
 import { useAppForm } from "@invid/ui/form-fields";
 import { P } from "@invid/ui/p";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { ScrollView } from "react-native";
+import { z } from "zod";
 
-type Person = {
-  id: number;
+const MAX_GUESTS = 20;
+const MAX_NOTES = 280;
+
+const COUNTRIES = [
+  { label: "Argentina", value: "ar" },
+  { label: "Colombia", value: "co" },
+  { label: "Mexico", value: "mx" },
+  { label: "Spain", value: "es" },
+  { label: "United States", value: "us" },
+] as const;
+
+const SEATING = [
+  { label: "Indoor", value: "indoor" },
+  { label: "Terrace", value: "terrace" },
+  { label: "Bar", value: "bar" },
+] as const;
+
+const reservationSchema = z.object({
+  name: z.string().trim().min(1, "Enter your name."),
+  phone: z
+    .string()
+    .regex(
+      /^\+?[\d\s()-]{7,20}$/,
+      "Enter a phone number, like +34 600 123 456.",
+    ),
+  guests: z
+    .number({ error: "Enter the number of guests." })
+    .int("Use a whole number.")
+    .min(1, "At least 1 guest.")
+    .max(MAX_GUESTS, `At most ${MAX_GUESTS} guests.`),
+  country: z.string({ error: "Choose a country." }),
+  seating: z.enum(["indoor", "terrace", "bar"], {
+    error: "Choose where to sit.",
+  }),
+  notes: z.string().max(MAX_NOTES, `Keep notes under ${MAX_NOTES} characters.`),
+});
+
+type Reservation = z.output<typeof reservationSchema>;
+
+type ReservationValues = {
   name: string;
-  quantity: number;
+  phone: string;
+  guests: number | undefined;
+  country: string | undefined;
+  seating: Reservation["seating"] | undefined;
+  notes: string;
 };
 
-const MAX_QUANTITY = 20;
-const NAME_REQUIRED = "Name is required.";
-const QUANTITY_INVALID = `Enter a whole number from 1 to ${MAX_QUANTITY}.`;
+const EMPTY_RESERVATION: ReservationValues = {
+  name: "",
+  phone: "",
+  guests: 2,
+  country: undefined,
+  seating: undefined,
+  notes: "",
+};
 
-function validateName({ value }: { value: string }) {
-  return value.trim() ? undefined : NAME_REQUIRED;
-}
-
-function validateQuantity({ value }: { value: string }) {
-  const quantity = Number(value);
-  const isValid =
-    value !== "" &&
-    Number.isInteger(quantity) &&
-    quantity >= 1 &&
-    quantity <= MAX_QUANTITY;
-
-  return isValid ? undefined : QUANTITY_INVALID;
-}
-
-function PersonCard({ person }: { person: Person }) {
-  const copies = Array.from(
-    { length: person.quantity },
-    (_, copy) => `${person.id}-${copy}`,
-  );
-  const names = copies.map((copyKey) => <P key={copyKey}>{person.name}</P>);
-
-  return <Container variant="card">{names}</Container>;
+function describeReservation(reservation: Reservation | undefined) {
+  if (reservation === undefined) {
+    return "No reservation yet.";
+  }
+  return `${reservation.name}, ${reservation.guests} guests, ${reservation.seating}, ${reservation.country}.`;
 }
 
 export default function FormRoute() {
-  const [people, setPeople] = useState<Person[]>([]);
-  const nextPersonId = useRef(0);
+  const [reservation, setReservation] = useState<Reservation>();
   const form = useAppForm({
-    defaultValues: {
-      name: "",
-      quantity: "",
-    },
+    defaultValues: EMPTY_RESERVATION,
+    validators: { onChange: reservationSchema },
     onSubmit: ({ value }) => {
-      const person = {
-        id: nextPersonId.current,
-        name: value.name.trim(),
-        quantity: Number(value.quantity),
-      };
-      nextPersonId.current += 1;
-      setPeople((currentPeople) => [...currentPeople, person]);
+      setReservation(reservationSchema.parse(value));
       form.reset();
     },
   });
-  const sortedPeople = [...people].sort((first, second) =>
-    first.name.localeCompare(second.name),
-  );
-  const peopleList =
-    sortedPeople.length === 0 ? (
-      <P>No people added yet.</P>
-    ) : (
-      sortedPeople.map((person) => (
-        <PersonCard key={person.id} person={person} />
-      ))
-    );
+  const reservationSummary = describeReservation(reservation);
 
   return (
-    <ScrollView>
+    <ScrollView keyboardShouldPersistTaps="handled">
       <Container variant="screen">
         <Container variant="section">
-          <P variant="lead">People</P>
+          <P variant="lead">Reservation</P>
           <P variant="muted">
-            Add people with a repeat count. The list is kept in alphabetical
-            order.
+            Every field is validated by one zod schema. Errors appear after you
+            leave a field or press Reserve.
           </P>
         </Container>
 
-        <form.AppField name="name" validators={{ onChange: validateName }}>
-          {(field) => (
-            <field.TextField
-              autoCapitalize="words"
-              label="Name"
-              placeholder="Enter a name"
-            />
-          )}
-        </form.AppField>
-
-        <form.AppField
-          name="quantity"
-          validators={{ onChange: validateQuantity }}
-        >
-          {(field) => (
-            <field.NumberField
-              label="Quantity"
-              placeholder="Enter a quantity"
-            />
-          )}
-        </form.AppField>
-
         <form.AppForm>
-          <form.SubmitButton title="Add person" variant="primary" />
+          <form.AppField name="name">
+            {(field) => (
+              <field.TextField
+                autoCapitalize="words"
+                autoComplete="name"
+                label="Name"
+                placeholder="Your full name"
+              />
+            )}
+          </form.AppField>
+          <form.AppField name="phone">
+            {(field) => (
+              <field.PhoneField
+                description="We text you if the table is ready early."
+                label="Phone"
+                placeholder="+34 600 123 456"
+              />
+            )}
+          </form.AppField>
+          <form.AppField name="guests">
+            {(field) => <field.NumberField label="Guests" />}
+          </form.AppField>
+          <form.AppField name="country">
+            {(field) => (
+              <field.SelectField
+                label="Country"
+                options={COUNTRIES}
+                placeholder="Choose a country"
+              />
+            )}
+          </form.AppField>
+          <form.AppField name="seating">
+            {(field) => (
+              <field.RadioGroupField label="Seating" options={SEATING} />
+            )}
+          </form.AppField>
+          <form.AppField name="notes">
+            {(field) => (
+              <field.TextAreaField
+                description="Allergies, accessibility needs, or celebrations."
+                label="Notes"
+                maxLength={MAX_NOTES}
+              />
+            )}
+          </form.AppField>
+          <form.SubmitButton title="Reserve" variant="primary" />
         </form.AppForm>
 
         <Container variant="section">
-          <P variant="muted">People in alphabetical order</P>
-          {peopleList}
+          <P variant="muted">Last reservation</P>
+          <P>{reservationSummary}</P>
         </Container>
       </Container>
     </ScrollView>

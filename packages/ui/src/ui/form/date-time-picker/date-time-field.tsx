@@ -7,8 +7,8 @@ import { Modal, Platform, Pressable } from "react-native";
 import { useThemeColor } from "#/theme/use-theme-color";
 import { Button } from "#/ui/button";
 import { Container } from "#/ui/container";
-import type { TextInputProps, TextInputVariant } from "#/ui/text-input";
-import { TextInput } from "#/ui/text-input";
+import type { TextInputProps, TextInputVariant } from "#/ui/form/text-input";
+import { TextInput } from "#/ui/form/text-input";
 
 export type PickerVariant = TextInputVariant;
 

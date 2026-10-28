@@ -44,3 +44,7 @@ export const Lead: Story = {
 export const Muted: Story = {
   args: { variant: "muted" },
 };
+
+export const Invalid: Story = {
+  args: { defaultValue: "0", invalid: true },
+};

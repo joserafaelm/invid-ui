@@ -4,7 +4,7 @@
   "description": "React Native UI components for iOS and Android.",
   "type": "module",
   "sideEffects": ["./dist/internal/styles.js"],
-  "files": ["dist", "README.md"],
+  "files": ["dist", "README.md", "form.md"],
   "exports": {
     "./metro": {
       "types": "./dist/metro/with-invid-ui.d.ts",
@@ -31,24 +31,44 @@
       "default": "./dist/ui/container.js"
     },
     "./text-input": {
-      "types": "./dist/ui/text-input.d.ts",
-      "default": "./dist/ui/text-input.js"
+      "types": "./dist/ui/form/text-input.d.ts",
+      "default": "./dist/ui/form/text-input.js"
     },
     "./number-input": {
-      "types": "./dist/ui/number-input.d.ts",
-      "default": "./dist/ui/number-input.js"
+      "types": "./dist/ui/form/number-input.d.ts",
+      "default": "./dist/ui/form/number-input.js"
+    },
+    "./text-area": {
+      "types": "./dist/ui/form/text-area.d.ts",
+      "default": "./dist/ui/form/text-area.js"
+    },
+    "./phone-input": {
+      "types": "./dist/ui/form/phone-input.d.ts",
+      "default": "./dist/ui/form/phone-input.js"
+    },
+    "./select": {
+      "types": "./dist/ui/form/select.d.ts",
+      "default": "./dist/ui/form/select.js"
+    },
+    "./radio-group": {
+      "types": "./dist/ui/form/radio-group.d.ts",
+      "default": "./dist/ui/form/radio-group.js"
+    },
+    "./form-field": {
+      "types": "./dist/ui/form/form-field.d.ts",
+      "default": "./dist/ui/form/form-field.js"
     },
     "./form-fields": {
-      "types": "./dist/ui/form-fields.d.ts",
-      "default": "./dist/ui/form-fields.js"
+      "types": "./dist/ui/form/form-fields.d.ts",
+      "default": "./dist/ui/form/form-fields.js"
     },
     "./date-picker": {
-      "types": "./dist/ui/date-time-picker/date-picker.d.ts",
-      "default": "./dist/ui/date-time-picker/date-picker.js"
+      "types": "./dist/ui/form/date-time-picker/date-picker.d.ts",
+      "default": "./dist/ui/form/date-time-picker/date-picker.js"
     },
     "./time-picker": {
-      "types": "./dist/ui/date-time-picker/time-picker.d.ts",
-      "default": "./dist/ui/date-time-picker/time-picker.js"
+      "types": "./dist/ui/form/date-time-picker/time-picker.d.ts",
+      "default": "./dist/ui/form/date-time-picker/time-picker.js"
     },
     "./title": {
       "types": "./dist/ui/title.d.ts",
@@ -74,7 +94,6 @@
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.metro.json"
   },
   "dependencies": {
-    "heroui-native": "^1.0.11",
     "tailwind-merge": "^3.4.0",
     "tailwind-variants": "^3.3.1",
     "tailwindcss": "^4.3.3",
@@ -86,11 +105,7 @@
     "lucide-react-native": "^1.57.0",
     "react": ">=19.1.0 <20.0.0",
     "react-native": ">=0.82.0 <0.89.0",
-    "react-native-gesture-handler": "^2.28.0 || ^3.0.0",
-    "react-native-reanimated": "^4.1.1",
-    "react-native-safe-area-context": "^5.6.0",
-    "react-native-svg": "^15.12.1",
-    "react-native-worklets": ">=0.5.1"
+    "react-native-svg": "^15.12.1"
   },
   "peerDependenciesMeta": {
     "@react-native-community/datetimepicker": {
@@ -100,6 +115,9 @@
       "optional": true
     },
     "lucide-react-native": {
+      "optional": true
+    },
+    "react-native-svg": {
       "optional": true
     }
   },
@@ -112,11 +130,7 @@
     "metro-config": "^0.84.3",
     "react": "catalog:",
     "react-native": "catalog:",
-    "react-native-gesture-handler": "catalog:",
-    "react-native-reanimated": "catalog:",
-    "react-native-safe-area-context": "catalog:",
     "react-native-svg": "catalog:",
-    "react-native-worklets": "catalog:",
     "typescript": "catalog:"
   }
 }
