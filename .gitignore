@@ -42,3 +42,8 @@ local/
 
 # @invid/ui generated styles
 .invid-ui/
+.agents
+.claude
+AGENTS.md
+CLAUDE.md
+skills-lock.json
