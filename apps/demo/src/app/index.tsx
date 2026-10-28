@@ -6,6 +6,7 @@ import { ScrollView, View } from "react-native";
 import { screenStyles } from "@/styles/screen";
 
 const P_ROUTE = "/p";
+const AVATAR_ROUTE = "/Avatar";
 const BUTTON_ROUTE = "/Button";
 const TEXT_INPUT_ROUTE = "/text-input";
 const NUMBER_INPUT_ROUTE = "/NumberInput";
@@ -25,6 +26,9 @@ export default function OverviewRoute() {
             Open the menu to browse a demo screen for each public component.
           </P>
 
+          <Link asChild={true} href={AVATAR_ROUTE}>
+            <Button icon={<Icon name="user" size={16} />} title="Avatar" />
+          </Link>
           <Link asChild={true} href={P_ROUTE}>
             <Button icon={<Icon name="type" size={16} />} title="P" />
           </Link>

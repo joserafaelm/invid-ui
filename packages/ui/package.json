@@ -58,6 +58,10 @@
       "types": "./dist/ui/icon.d.ts",
       "default": "./dist/ui/icon.js"
     },
+    "./avatar": {
+      "types": "./dist/ui/avatar/avatar.d.ts",
+      "default": "./dist/ui/avatar/avatar.js"
+    },
     "./package.json": "./package.json"
   },
   "imports": {

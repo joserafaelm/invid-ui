@@ -15,6 +15,7 @@ const DEMO_SCREENS = [
   { name: "Icons", title: "Icons" },
   { name: "container", title: "Container" },
   { name: "DateTimePicker", title: "Date & Time Picker" },
+  { name: "Avatar", title: "Avatar" },
 ] as const;
 
 function DemoNavigator() {
